@@ -197,6 +197,7 @@ extension UIView {
 			self!.duration = Float(CMTimeGetSeconds(player.currentItem!.duration))
 			nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = self!.duration
 			nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = CMTimeGetSeconds(player.currentItem!.currentTime())
+			print(nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime])
 			self!.nowPlayingInfoCenter.nowPlayingInfo = nowPlayingInfo
 		})
 	}

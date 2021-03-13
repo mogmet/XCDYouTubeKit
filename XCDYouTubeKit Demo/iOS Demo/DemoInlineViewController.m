@@ -20,13 +20,14 @@
 }
 - (IBAction) load:(id)sender
 {
-	NSString *videoIdentifier = [[NSUserDefaults standardUserDefaults] objectForKey:@"VideoIdentifier"];
-
+//	NSString *videoIdentifier = [[NSUserDefaults standardUserDefaults] objectForKey:@"VideoIdentifier"];
+	NSString *videoIdentifier = @"OSWgS6EpYCc"; // youtubeのID指定
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:videoIdentifier completionHandler:^(XCDYouTubeVideo * _Nullable video, NSError * _Nullable error) {
 		if (video)
 		{
 			[AVPlayerViewControllerManager shared].video = video;
 			AVPlayerViewController *playerViewController = [AVPlayerViewControllerManager shared].controller;
+			[playerViewController.player seekToTime:CMTimeMake(30, 1)]; // ここでシークさせてる
 			playerViewController.view.frame = self.videoContainerView.bounds;
 			[self addChildViewController:playerViewController];
 			[self.videoContainerView addSubview:playerViewController.view];
